@@ -10,25 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730012818) do
+ActiveRecord::Schema.define(version: 20170730181622) do
 
   create_table "entries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string "resource_name", limit: 100, null: false
-    t.string "subject_name", limit: 100, null: false
     t.string "user_login", limit: 25, null: false
     t.float "time_entry", limit: 24
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "subject_id"
+    t.integer "resource_id"
   end
 
   create_table "resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name", limit: 100, null: false
-    t.string "subject", limit: 100, null: false
     t.string "hyperlink"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "subject_id"
   end
 
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170730012818) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "resource_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -44,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170730012818) do
     t.string "email", limit: 50
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "entry_id"
   end
 
 end
